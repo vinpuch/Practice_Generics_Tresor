@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Tresor<T> {
 
@@ -6,8 +7,9 @@ public class Tresor<T> {
     private int _pin;
     private T _inhalt;
 
-    public Tresor(int i, T objkte) {
-
+    public Tresor(int _pin, T _inhalt) {
+        this._pin = _pin;
+        this._inhalt = _inhalt;
     }
 
     @Override
@@ -22,10 +24,9 @@ public class Tresor<T> {
         return Objects.hash(_pin, _inhalt);
     }
 
-    public T getInhalt(String str) {
-        if (Objects.equals(str, String.valueOf(_pin))) {
+    public T getInhalt(int str) {
+        if (str ==_pin) {
             return _inhalt;
-
         }else {
         throw new RuntimeException("Falscher Code");
         }
@@ -35,10 +36,11 @@ public class Tresor<T> {
 
     public static void main(String[] args) {
         Tresor<String> meinTresor = new Tresor<>(13, "Zahnbürste");
-
-        String str = System.console().readLine(
-                "Enter password : ");
-        System.out.println(meinTresor.getInhalt(str));
+        System.out.println("Eingabe");
+        Scanner s = new Scanner(System.in);
+        int str = s.nextInt();
+        System.out.println(str);
+        System.out.println(meinTresor.getInhalt(13));
 
 
     }
