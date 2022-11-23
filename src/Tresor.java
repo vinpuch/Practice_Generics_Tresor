@@ -6,6 +6,10 @@ public class Tresor<T> {
     private int _pin;
     private T _inhalt;
 
+    public Tresor(int i, T objkte) {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -18,41 +22,26 @@ public class Tresor<T> {
         return Objects.hash(_pin, _inhalt);
     }
 
-    public int get_pin() {
-        return _pin;
-    }
+    public T getInhalt(String str) {
+        if (Objects.equals(str, String.valueOf(_pin))) {
+            return _inhalt;
 
-    public void set_pin(int _pin) {
-        this._pin = _pin;
-    }
-
-    public T getInhalt() {
-        return _inhalt;
-    }
-
-    public void setInhalt(T inhalt) {
-        _inhalt = inhalt;
+        }else {
+        throw new RuntimeException("Falscher Code");
+        }
     }
 
 
-    public Tresor(int _pin, T inhalt) {
-        this._pin = _pin;
-        _inhalt = inhalt;
-    }
-
-    @Override
-    public String toString() {
-        return "Tresor{" +
-                "_pin=" + _pin +
-                ", _inhalt=" + _inhalt +
-                '}';
-    }
 
     public static void main(String[] args) {
         Tresor<String> meinTresor = new Tresor<>(13, "Zahnbürste");
 
-        System.out.println(meinTresor);
+        String str = System.console().readLine(
+                "Enter password : ");
+        System.out.println(meinTresor.getInhalt(str));
+
 
     }
+
 
 }
